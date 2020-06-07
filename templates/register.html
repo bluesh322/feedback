@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% block title %}Feedback Register{% endblock %}
+
+{% block content %}
+<h1 class="display-1">Register</h1>
+<p class="lead">Have an account? <a href="/login">Login here</a></p>
+
+<form action='/register' method="POST" id="new-cupcake-form">
+    {{ form.hidden_tag() }}
+    {% for field in form
+    if field.widget.input_type != 'hidden' %}
+    <div>
+        {{field.label}}
+        {{field(class_="form-control col-sm-3 col-md-6 col-lg-8")}}
+
+        {% for err in field.errors %}
+        <span class="form-text text-danger">{{err}}</span>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <button class="btn btn-primary my-3">Register</button>
+</form>
+
+{% endblock %}
